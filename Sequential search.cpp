@@ -28,3 +28,51 @@ int search(vector<int>& num, int a) {
 
 	return -1;
 }
+
+
+/* 二分查找，Array为数组，n为要查找的数组元素个数，key为要查找的关键字,left为范围左边界，right为范围右边界*/
+ 
+/*二分查找，递归*/
+ 
+int binarySearch1(int Array[],int left,int right,int key) {
+ 
+    int mid = (right + left) / 2;
+ 
+    if (Array[mid]==key)
+ 
+        return mid;//查找成功返回
+ 
+    else if (Array[mid]>key)
+ 
+        binarySearch1(Array,left, mid - 1,key);//递归调用，在左半边查询
+ 
+    else
+ 
+        binarySearch1(Array, mid + 1,right,key);//递归调用，在右半边查询
+ 
+}
+
+//插值查找
+ 
+int InsertionSearch(int Array[],int left,int right,int key) {
+ 
+    int mid = left + (key - Array[left]) / (Array[right] - Array[left])*(right - left);//插值公式
+ 
+    if (Array[mid] == key)
+ 
+        return mid;
+ 
+    if (Array[mid]>key)
+ 
+        return InsertionSearch(Array, key, left, mid - 1);
+ 
+    if (Array[mid]<key)
+ 
+        return InsertionSearch(Array, key, mid + 1, right);
+ 
+}
+
+
+
+
+
